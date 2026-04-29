@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Radii & Shadows</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding: 24px; background: var(--cream); font-family: var(--font-sans); font-size: 11px; }
+  .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .box { width: 80px; height: 60px; background: var(--bone); border: 1px solid var(--stone-25); }
+  .tok { font-family: var(--font-mono); font-size: 10px; color: var(--stone); }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="cell"><div class="box" style="border-radius: 2px"></div><div class="tok">--radius-xs · 2px</div></div>
+    <div class="cell"><div class="box" style="border-radius: 4px"></div><div class="tok">--radius-sm · 4px</div></div>
+    <div class="cell"><div class="box" style="border-radius: 8px"></div><div class="tok">--radius-md · 8px</div></div>
+    <div class="cell"><div class="box" style="border-radius: 12px"></div><div class="tok">--radius-lg · 12px</div></div>
+    <div class="cell"><div class="box" style="border-radius: 16px"></div><div class="tok">--radius-xl · 16px</div></div>
+  </div>
+  <div style="height: 24px"></div>
+  <div class="grid" style="grid-template-columns: repeat(3, 1fr)">
+    <div class="cell"><div class="box" style="border-radius: 12px;"></div><div class="tok">--shadow-none</div></div>
+    <div class="cell"><div class="box" style="border-radius: 12px; box-shadow: var(--shadow-card); border-color: transparent;"></div><div class="tok">--shadow-card</div></div>
+    <div class="cell"><div class="box" style="border-radius: 12px; box-shadow: var(--shadow-lifted); border-color: transparent;"></div><div class="tok">--shadow-lifted</div></div>
+  </div>
+</body></html>

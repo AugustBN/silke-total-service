@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Colors — Semantic</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding: 20px; background: var(--cream); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .row { display: flex; align-items: center; gap: 12px; padding: 10px 12px; background: var(--bone); border: 1px solid var(--stone-25); border-radius: 8px; }
+  .swatch { width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--stone-25); flex-shrink: 0; }
+  .label { font-family: var(--font-sans); font-size: 12px; }
+  .label .var { font-family: var(--font-mono); color: var(--stone); font-size: 11px; }
+  .label .name { font-weight: 600; color: var(--bark); }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="row"><div class="swatch" style="background: var(--bg)"></div><div class="label"><div class="name">--bg</div><div class="var">page background</div></div></div>
+    <div class="row"><div class="swatch" style="background: var(--surface)"></div><div class="label"><div class="name">--surface</div><div class="var">cards, panels</div></div></div>
+    <div class="row"><div class="swatch" style="background: var(--surface-alt)"></div><div class="label"><div class="name">--surface-alt</div><div class="var">section bands</div></div></div>
+    <div class="row"><div class="swatch" style="background: var(--accent)"></div><div class="label"><div class="name">--accent</div><div class="var">primary buttons</div></div></div>
+    <div class="row"><div class="swatch" style="background: var(--link)"></div><div class="label"><div class="name">--link</div><div class="var">inline links</div></div></div>
+    <div class="row"><div class="swatch" style="background: var(--success)"></div><div class="label"><div class="name">--success</div><div class="var">badges</div></div></div>
+    <div class="row"><div class="swatch" style="background: var(--warning)"></div><div class="label"><div class="name">--warning</div><div class="var">urgent only</div></div></div>
+    <div class="row"><div class="swatch" style="background: var(--border-strong)"></div><div class="label"><div class="name">--border</div><div class="var">card edges</div></div></div>
+  </div>
+</body></html>

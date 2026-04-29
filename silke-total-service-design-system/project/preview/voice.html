@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Voice & tone</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding: 20px; background: var(--cream); font-family: var(--font-sans); font-size: 13px; line-height: 1.5; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .col { padding: 14px 16px; border-radius: 8px; border: 1px solid var(--stone-25); }
+  .yes { background: rgba(127, 166, 107, 0.12); }
+  .no  { background: rgba(184, 84, 43, 0.08); }
+  h4 { font-family: var(--font-sans); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 8px; }
+  .yes h4 { color: var(--hedge); }
+  .no  h4 { color: var(--rust); }
+  ul { margin: 0; padding-left: 18px; }
+  li { margin-bottom: 6px; color: var(--bark); }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="col yes">
+      <h4>✓ Voice — do</h4>
+      <ul>
+        <li>"Hækken trænger til en tur. Vi kommer forbi."</li>
+        <li>"Vi klipper, samler op og kører væk."</li>
+        <li>"Få en fast pris inden vi starter."</li>
+      </ul>
+    </div>
+    <div class="col no">
+      <h4>✕ Voice — don't</h4>
+      <ul>
+        <li>"Altid de bedste i hele Midtjylland!"</li>
+        <li>"Premium total service excellence"</li>
+        <li>"🌿 Din have fortjener det bedste! 🌳"</li>
+      </ul>
+    </div>
+  </div>
+</body></html>

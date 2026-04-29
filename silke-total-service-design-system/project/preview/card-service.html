@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Service card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding: 20px; background: var(--cream); font-family: var(--font-sans); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card { background: var(--bone); border: 1px solid var(--stone-25); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-card); }
+  .card .icon { width: 32px; height: 32px; color: var(--hedge); margin-bottom: 12px; }
+  .card h3 { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--forest); margin: 0 0 8px; letter-spacing: -0.01em; }
+  .card p { font-size: 14px; color: var(--bark); margin: 0 0 12px; line-height: 1.5; }
+  .card .more { font-size: 14px; color: var(--hedge); font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="card">
+      <img class="icon" src="../assets/icon-haekklipning.svg">
+      <h3>Hækklipning</h3>
+      <p>Bøg, liguster, thuja — vi klipper, samler op og kører væk.</p>
+      <div class="more">Læs mere →</div>
+    </div>
+    <div class="card">
+      <img class="icon" src="../assets/icon-fliserens.svg">
+      <h3>Fliserens</h3>
+      <p>Højtryk og blødt kemi. Vi får terrassen til at se ny ud.</p>
+      <div class="more">Læs mere →</div>
+    </div>
+  </div>
+</body></html>

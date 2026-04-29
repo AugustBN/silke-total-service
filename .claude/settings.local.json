@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(curl -sL -w \"\\\\nHTTP_CODE:%{http_code}\\\\n\" \"https://api.anthropic.com/v1/design/h/IqdwnJnbCl3LU00RfaAxsQ\")",
+      "Bash(curl -sIL \"https://api.anthropic.com/v1/design/h/IqdwnJnbCl3LU00RfaAxsQ?open_file=ui_kits%2Fwebsite%2Findex.html\")",
+      "Bash(curl -sL -X POST \"https://api.anthropic.com/v1/design/h/IqdwnJnbCl3LU00RfaAxsQ\" -w \"\\\\nHTTP_CODE:%{http_code}\\\\n\")",
+      "Bash(unzip -l \"/Users/august/Downloads/Silke Total Service Design System-handoff.zip\")",
+      "Bash(unzip -q \"/Users/august/Downloads/Silke Total Service Design System-handoff.zip\")",
+      "Bash(open index.html)",
+      "Bash(open \"/Users/august/Documents/Claude/Antigravity - Personlig Hjemmeside Projekt/index.html\")",
+      "Bash(sed -n '60,90p' index.html)",
+      "Bash(sed -n '139,155p' index.html)",
+      "Bash(open -a \"Google Chrome\" --args --new-window \"file:///Users/august/Documents/Claude/Antigravity - Personlig Hjemmeside Projekt/index.html\")",
+      "Bash(open -a \"Safari\" \"/Users/august/Documents/Claude/Antigravity - Personlig Hjemmeside Projekt/index.html\")",
+      "Read(//Users/august/.claude/**)",
+      "Bash(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate,duration,nb_frames -show_entries format=duration,size,bit_rate -of default=noprint_wrappers=0 \"/Users/august/Downloads/pcloud_552088188_3_202604_1_vrw-20260429183726-7421174-d1954-result.mp4\")",
+      "Bash(mdls -name kMDItemDurationSeconds -name kMDItemPixelHeight -name kMDItemPixelWidth -name kMDItemFSSize -name kMDItemAudioBitRate \"/Users/august/Downloads/pcloud_552088188_3_202604_1_vrw-20260429183726-7421174-d1954-result.mp4\")",
+      "Bash(mkdir -p \"/Users/august/Documents/Claude/Antigravity - Personlig Hjemmeside Projekt/tools\")",
+      "Bash(curl -L -s -o ffmpeg.zip \"https://evermeet.cx/ffmpeg/getrelease/zip\")",
+      "Bash(curl -L -s -o ffprobe.zip \"https://evermeet.cx/ffmpeg/getrelease/ffprobe/zip\")",
+      "Bash(unzip -o -q ffmpeg.zip)",
+      "Bash(unzip -o -q ffprobe.zip)",
+      "Bash(xattr -d com.apple.quarantine ffmpeg ffprobe)",
+      "Bash(./ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate,duration,nb_frames -of default=noprint_wrappers=1 ../assets/videos/haek-scroll.mp4)",
+      "Bash(./ffprobe -loglevel error -select_streams v:0 -show_entries packet=pts_time,flags -of csv=print_section=0 ../assets/videos/haek-scroll.mp4)",
+      "Bash(./tools/ffmpeg -y -i assets/videos/haek-scroll.mp4 -an -vcodec libx264 -pix_fmt yuv420p -profile:v high -crf 22 -g 1 -x264-params \"keyint=1:min-keyint=1:scenecut=0\" -movflags +faststart assets/videos/haek-scroll-scrub.mp4)",
+      "Bash(./tools/ffprobe -loglevel error -select_streams v:0 -show_entries packet=pts_time,flags -of csv=print_section=0 assets/videos/haek-scroll-scrub.mp4)",
+      "Bash(open \"/Users/august/Documents/Claude/Antigravity - Personlig Hjemmeside Projekt/pages/service.html\")",
+      "Bash(./tools/ffprobe -v error -show_format -show_streams \"assets/videos/haek-scroll-scrub.mp4\")",
+      "Bash(sips -g pixelWidth -g pixelHeight assets/photos/ny-haek-roekke.png assets/photos/haek-stigen.png assets/reference-collage.png)",
+      "Bash(md5 -q assets/logo-mark.png assets/logo-silkehave.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight assets/logo-mark.png assets/logo-silkehave.png)",
+      "Bash(awk '{print $5, $9}')"
+    ]
+  }
+}

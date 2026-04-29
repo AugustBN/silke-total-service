@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Område — Silke Total Service</title>
+<link rel="stylesheet" href="../../../colors_and_type.css">
+<link rel="stylesheet" href="../site.css">
+<style>
+  .map-wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; padding: 64px 0; align-items: start; }
+  @media (max-width: 880px) { .map-wrap { grid-template-columns: 1fr; } }
+  .map-wrap h2 { font-family: var(--font-display); font-size: 32px; color: var(--forest); margin: 0 0 16px; }
+  .map-list { columns: 2; column-gap: 32px; margin: 0; padding: 0; list-style: none; }
+  .map-list li { padding: 8px 0; font-size: 15px; border-bottom: 1px solid var(--stone-12); }
+  .big-map { aspect-ratio: 4/3; background: var(--surface-alt); border-radius: var(--radius-lg); border: 1px solid var(--stone-25); overflow: hidden; }
+</style>
+</head>
+<body data-screen-label="05 Område · service area">
+<header class="sth sth-solid"><div class="sth-inner">
+  <a class="sth-logo" href="../index.html"><img src="../../../assets/logo-wordmark.svg" alt="Silke Total Service"></a>
+  <nav class="sth-nav">
+    <a href="../index.html#ydelser">Ydelser</a><a href="om-os.html">Om os</a>
+    <a href="omraade.html">Område</a><a href="kontakt.html">Kontakt</a>
+  </nav>
+  <div class="sth-right">
+    <div class="sth-right">
+      <a class="sth-phone" href="https://www.facebook.com/profile.php?id=61574788933190" target="_blank" rel="noopener">facebook · silkehave</a>
+      <a class="stb stb-primary" href="kontakt.html">Få et tilbud</a>
+    </div>
+  </div>
+</div></header>
+
+<section class="page-head">
+  <div class="page-head-inner">
+    <div class="stb-eyebrow">Område</div>
+    <h1>Vi kører primært<br>i Midtjylland.</h1>
+    <p>Base i Silkeborg-området. Står du lige udenfor — ring og spørg, vi kan ofte godt komme alligevel.</p>
+  </div>
+</section>
+
+<section style="background: var(--cream)">
+  <div class="map-wrap" style="max-width: var(--container-max); margin: 0 auto; padding-left: 24px; padding-right: 24px">
+    <div>
+      <h2>Byer vi kører i</h2>
+      <ul class="map-list">
+        <li>Silkeborg</li><li>Viborg</li><li>Skanderborg</li><li>Herning</li>
+        <li>Ikast</li><li>Brande</li><li>Bjerringbro</li><li>Hammel</li>
+        <li>Ry</li><li>Them</li><li>Kjellerup</li><li>Karup</li>
+        <li>Galten</li><li>Engesvang</li>
+      </ul>
+      <p style="margin-top: 24px; font-size: 14px; color: var(--stone)">Listen er ikke udtømmende — spørg hvis du er i tvivl.</p>
+    </div>
+    <div class="big-map">
+      <svg viewBox="0 0 480 360" width="100%" height="100%">
+        <rect width="480" height="360" fill="#EFEADE"/>
+        <path d="M60,140 Q90,90 160,80 Q240,60 300,90 Q380,110 410,170 Q440,240 380,290 Q300,340 200,310 Q100,280 70,220 Q40,180 60,140 Z" fill="#F5F1E8" stroke="#8A8578" stroke-width="1"/>
+        <circle cx="220" cy="195" r="90" fill="rgba(127,166,107,0.18)" stroke="#3B6B45" stroke-dasharray="3 4" stroke-width="1"/>
+        <g font-family="DM Sans, sans-serif" font-size="11" fill="#3A2E22">
+          <circle cx="220" cy="195" r="7" fill="#1F3A2C"/>
+          <text x="234" y="198" font-weight="700" fill="#1F3A2C">Silkeborg</text>
+          <circle cx="170" cy="135" r="3" fill="#3B6B45"/><text x="135" y="128">Viborg</text>
+          <circle cx="285" cy="220" r="3" fill="#3B6B45"/><text x="293" y="223">Skanderborg</text>
+          <circle cx="130" cy="225" r="3" fill="#3B6B45"/><text x="85" y="240">Herning</text>
+          <circle cx="155" cy="195" r="3" fill="#3B6B45"/><text x="105" y="190">Ikast</text>
+          <circle cx="265" cy="170" r="3" fill="#3B6B45"/><text x="273" y="165">Hammel</text>
+          <circle cx="240" cy="240" r="3" fill="#3B6B45"/><text x="248" y="252">Ry</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+</body>
+</html>

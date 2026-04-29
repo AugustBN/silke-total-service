@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Buttons</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding: 24px; background: var(--cream); font-family: var(--font-sans); }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: var(--radius-md); font-family: var(--font-sans); font-weight: 500; font-size: 15px; border: none; cursor: pointer; transition: background var(--dur-fast) var(--ease-out); }
+  .btn-primary { background: var(--forest); color: var(--cream); }
+  .btn-primary:hover { background: var(--forest-darker); }
+  .btn-ghost { background: transparent; color: var(--forest); border: 1.5px solid var(--forest); }
+  .btn-ghost:hover { background: var(--forest); color: var(--cream); }
+  .btn-link { background: transparent; color: var(--hedge); padding: 8px 4px; }
+  .label { font-family: var(--font-mono); font-size: 10px; color: var(--stone); width: 80px; }
+</style>
+</head>
+<body>
+  <div class="row"><div class="label">primary</div><button class="btn btn-primary">Få et tilbud</button><button class="btn btn-primary" style="background: var(--forest-darker)">Hover</button><button class="btn btn-primary" disabled style="opacity: 0.4">Disabled</button></div>
+  <div class="row"><div class="label">ghost</div><button class="btn btn-ghost">Læs mere</button><button class="btn btn-ghost" style="background: var(--forest); color: var(--cream)">Hover</button></div>
+  <div class="row"><div class="label">link</div><button class="btn btn-link">Læs mere →</button></div>
+</body></html>

@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Silke">
+  <path id="silke-leaf" d="M50,8&#xA;       C50,8 28,30 28,50&#xA;       C28,70 38,92 50,92&#xA;       C62,92 72,70 72,50&#xA;       C72,30 50,8 50,8 Z" fill="#1f3a2c"></path>
+  <path d="M50,12 L50,88" stroke="#f5f1e8" stroke-width="1.4" stroke-linecap="round" opacity="0.55"></path>
+</svg>

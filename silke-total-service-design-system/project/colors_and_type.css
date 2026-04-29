@@ -1,0 +1,255 @@
+/* =========================================================================
+   Silke Total Service — design tokens
+   Colors, typography, spacing, radii, shadows, and semantic CSS vars.
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=DM+Sans:wght@400;500;700&display=swap');
+
+:root {
+  /* ---------- Color: four-tier green system (role-mapped) ----------
+     Inspired by Starbucks' four-green discipline: every green has a job.
+     Don't pick "one brand green" — flatten the role and you flatten the brand. */
+  --forest:        #1F6B3A;   /* HEADINGS / brand signal — Silke logo green */
+  --forest-darker: #15532C;   /* hover/active for primary green */
+  --hedge:         #2F8C4A;   /* CTA FILL — slightly brighter, more luminous */
+  --hedge-hover:   #266F3A;
+  --moss-deep:     #133424;   /* FEATURE BANDS / footer — espresso-dark green */
+  --moss-uplift:   #2A4D38;   /* decorative dark accents (sparing) */
+  --sage-light:    #D8E8DA;   /* utility tint — valid-state / quiet badge bg */
+
+  /* ---------- Color: warm canvas (load-bearing — never pure white) ---------- */
+  --cream:    #F5F1E8;   /* primary page canvas */
+  --ceramic:  #EFEADE;   /* zone separator / soft section wash */
+  --bone:     #FFFDF7;   /* card surface */
+
+  --bark:     #3A2E22;   /* primary body text */
+  --stone:    #8A8578;   /* secondary text, borders */
+  --stone-25: rgba(138, 133, 120, 0.25);
+  --stone-12: rgba(138, 133, 120, 0.12);
+
+  /* ---------- Reserved accent — "guarantees / loyalty" only ----------
+     Like Starbucks Gold: never a general accent. Use only for fast-pris-garanti,
+     return-customer badges, and the "ring os" persistent tag. */
+  --honey:        #C9A765;
+  --honey-light:  #E8D9B6;
+  --honey-wash:   #FAF6EC;
+
+  /* Sky kept for atmospheric photo overlays only (not UI) */
+  --sky:      #A8C8DD;
+  --sky-deep: #6FA0BD;
+
+  /* Other — used very rarely */
+  --tarp:     #4A5D3B;
+  --rust:     #B8542B;   /* warning / urgent only */
+  --spring:   #5FB85A;   /* legacy alias = sage-bright; kept for back-compat */
+
+  /* ---------- Color: semantic ---------- */
+  --bg:           var(--cream);
+  --surface:      var(--bone);
+  --surface-alt:  #EFEADE;
+  --fg:           var(--bark);
+  --fg-muted:     var(--stone);
+  --fg-on-dark:   var(--cream);
+  --border:       var(--stone-25);
+  --border-strong: var(--stone);
+
+  /* Role mapping (Starbucks-style discipline):
+       - heading green   = forest      (brand signal, h1)
+       - CTA green       = hedge       (filled buttons, signature greens)
+       - band green      = moss-deep   (full-width feature bands, footer)
+       - utility green   = sage-light  (valid/quiet tints) */
+  --accent:       var(--hedge);          /* CTA fill */
+  --accent-hover: var(--hedge-hover);
+  --link:         var(--hedge);
+  --link-hover:   var(--forest);
+  --focus-ring:   var(--hedge);
+  --band:         var(--moss-deep);      /* dark-green band/footer surface */
+
+  --success:      var(--hedge);
+  --warning:      var(--rust);
+
+  /* ---------- Type: families ---------- */
+  --font-display: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+  --font-sans:    'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* ---------- Type: sizes (mobile-first; desktop scales up where set) ---------- */
+  --fs-eyebrow:  12px;
+  --fs-tiny:     13px;
+  --fs-small:    14px;
+  --fs-body:     16px;
+  --fs-lead:     18px;
+  --fs-h6:       16px;
+  --fs-h5:       18px;
+  --fs-h4:       22px;
+  --fs-h3:       28px;
+  --fs-h2:       40px;
+  --fs-h1:       56px;
+  --fs-display:  80px;
+
+  /* ---------- Type: weights ---------- */
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semi:    600;
+  --fw-bold:    700;
+
+  /* ---------- Type: line heights ---------- */
+  --lh-tight:   1.05;
+  --lh-snug:    1.2;
+  --lh-normal:  1.45;
+  --lh-loose:   1.6;
+
+  /* ---------- Type: tracking ---------- */
+  --tr-eyebrow: 0.08em;
+  --tr-display: -0.02em;
+  --tr-h1:      -0.015em;
+  --tr-body:    0;
+
+  /* ---------- Spacing (4px base) ---------- */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-7:  32px;
+  --space-8:  48px;
+  --space-9:  64px;
+  --space-10: 80px;
+  --space-11: 96px;
+  --space-12: 128px;
+
+  /* ---------- Radii ---------- */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  /* ---------- Shadows — whisper-soft, layered (never one heavy drop) ----------
+     Stack 2–3 low-alpha shadows with different offsets to fake real ambient + direct light. */
+  --shadow-none:    none;
+  --shadow-card:    0 0 0.5px rgba(19, 52, 36, 0.14),
+                    0 1px 2px  rgba(19, 52, 36, 0.10),
+                    0 8px 24px rgba(19, 52, 36, 0.05);
+  --shadow-nav:     0 1px 3px  rgba(19, 52, 36, 0.10),
+                    0 2px 2px  rgba(19, 52, 36, 0.06),
+                    0 0 2px    rgba(19, 52, 36, 0.07);
+  --shadow-lifted:  0 2px 4px  rgba(19, 52, 36, 0.10),
+                    0 12px 28px rgba(19, 52, 36, 0.10),
+                    0 24px 48px rgba(19, 52, 36, 0.06);
+  --shadow-float:   0 0 6px    rgba(19, 52, 36, 0.24),
+                    0 8px 14px rgba(19, 52, 36, 0.14);
+  --shadow-focus:   0 0 0 2px var(--bg), 0 0 0 4px var(--focus-ring);
+
+  /* ---------- Active-press scale — universal micro-interaction ---------- */
+  --press-scale: 0.97;
+
+  /* ---------- Layout ---------- */
+  --container-max: 1200px;
+  --container-narrow: 800px;
+  --gutter: var(--space-6);
+
+  /* ---------- Motion ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 150ms;
+  --dur-base: 240ms;
+  --dur-slow: 600ms;
+}
+
+/* =========================================================================
+   Base type — semantic element styles.
+   These are intentionally light; component CSS overrides as needed.
+   ========================================================================= */
+
+html { font-family: var(--font-sans); color: var(--fg); background: var(--bg); }
+body { margin: 0; font-size: var(--fs-body); line-height: var(--lh-normal); -webkit-font-smoothing: antialiased; }
+
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: var(--fw-semi); color: var(--fg); margin: 0 0 var(--space-4); letter-spacing: var(--tr-h1); line-height: var(--lh-tight); }
+h5, h6           { font-family: var(--font-sans);    font-weight: var(--fw-bold);  color: var(--fg); margin: 0 0 var(--space-3); line-height: var(--lh-snug); }
+
+h1 { font-size: var(--fs-h1); letter-spacing: var(--tr-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); }
+h5 { font-size: var(--fs-h5); }
+h6 { font-size: var(--fs-h6); }
+
+p, li { font-size: var(--fs-body); line-height: var(--lh-normal); color: var(--fg); margin: 0 0 var(--space-4); }
+.lead { font-size: var(--fs-lead); line-height: var(--lh-loose); color: var(--fg); }
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+small, .small { font-size: var(--fs-small); color: var(--fg-muted); }
+
+a {
+  color: var(--link);
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast) var(--ease-out), text-decoration-thickness var(--dur-fast) var(--ease-out);
+}
+a:hover { color: var(--link-hover); text-decoration-thickness: 2px; }
+
+code, kbd, pre { font-family: var(--font-mono); font-size: 0.95em; }
+
+::selection { background: var(--hedge); color: var(--bone); }
+
+/* =========================================================================
+   System rhythm — color-block sections.
+   Compose pages as: cream → bone → moss-deep band → cream → moss-deep footer.
+   ========================================================================= */
+
+.surface-cream   { background: var(--cream);   color: var(--fg); }
+.surface-ceramic { background: var(--ceramic); color: var(--fg); }
+.surface-bone    { background: var(--bone);    color: var(--fg); }
+.surface-band    { background: var(--moss-deep); color: var(--fg-on-dark); }
+.surface-band h1, .surface-band h2, .surface-band h3, .surface-band h4 { color: #fff; }
+.surface-band p, .surface-band li { color: rgba(255,255,255,0.78); }
+.surface-band .eyebrow { color: rgba(255,255,255,0.62); }
+.surface-honey-wash { background: var(--honey-wash); color: var(--fg); }
+
+/* Reserved-accent badge — guarantees / loyalty only.
+   Equivalent to Starbucks' Gold Rewards pill. */
+.badge-honey {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border: 1px solid var(--honey);
+  color: #8a6f2e;
+  background: var(--honey-wash);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-tiny);
+  font-weight: var(--fw-semi);
+  letter-spacing: 0.02em;
+}
+
+/* Image fade-in on load — prevents jarring pop-in */
+img.fade-in { opacity: 0; transition: opacity 0.4s ease-in; }
+img.fade-in.is-loaded, img.fade-in[data-loaded="true"] { opacity: 1; }
+
+/* Focus ring used app-wide */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* Desktop type scale */
+@media (min-width: 768px) {
+  :root {
+    --fs-h1: 72px;
+    --fs-h2: 48px;
+    --fs-h3: 32px;
+    --fs-display: 112px;
+  }
+}

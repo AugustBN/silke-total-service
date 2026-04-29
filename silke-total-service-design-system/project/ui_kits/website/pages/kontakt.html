@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontakt — Silke Total Service</title>
+<link rel="stylesheet" href="../../../colors_and_type.css">
+<link rel="stylesheet" href="../site.css">
+<style>
+  .kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; padding: 64px 0; }
+  @media (max-width: 880px) { .kontakt-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .kontakt-info h2 { font-family: var(--font-display); font-size: 32px; color: var(--forest); margin: 0 0 16px; }
+  .kontakt-info p { font-size: 16px; line-height: 1.55; }
+  .kontakt-info a { display: flex; align-items: center; gap: 10px; padding: 10px 0; color: var(--bark); text-decoration: none; font-size: 16px; }
+  .kontakt-info a:hover { color: var(--hedge); }
+  .kontakt-info a img { width: 18px; height: 18px; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body data-screen-label="04 Kontakt · kvote-formular">
+<header class="sth sth-solid"><div class="sth-inner">
+  <a class="sth-logo" href="../index.html"><img src="../../../assets/logo-wordmark.svg" alt="Silke Total Service"></a>
+  <nav class="sth-nav">
+    <a href="../index.html#ydelser">Ydelser</a><a href="om-os.html">Om os</a>
+    <a href="omraade.html">Område</a><a href="kontakt.html">Kontakt</a>
+  </nav>
+  <div class="sth-right">
+    <div class="sth-right">
+      <a class="sth-phone" href="https://www.facebook.com/profile.php?id=61574788933190" target="_blank" rel="noopener">facebook · silkehave</a>
+    </div>
+  </div>
+</div></header>
+
+<section class="page-head">
+  <div class="page-head-inner">
+    <div class="stb-eyebrow">Kontakt</div>
+    <h1>Få et tilbud.</h1>
+    <p>Skriv kort hvad du har brug for. Vi vender tilbage indenfor 1–2 hverdage med en fast pris — uden bindinger.</p>
+  </div>
+</section>
+
+<section style="background: var(--cream)">
+  <div class="kontakt-grid" style="max-width: var(--container-max); margin: 0 auto; padding-left: 24px; padding-right: 24px">
+    <div class="kontakt-info">
+      <h2>Eller fang os direkte</h2>
+      <p>Hvis det er nemmere — skriv på Facebook. Vi svarer typisk samme dag.</p>
+      <a href="https://www.facebook.com/profile.php?id=61574788933190" target="_blank" rel="noopener"><img src="../../../assets/icon-mail.svg" alt=""> Facebook · silkehave</a>
+      <a href="omraade.html"><img src="../../../assets/icon-mappin.svg" alt=""> Midtjylland</a>
+    </div>
+    <div id="form-root"></div>
+  </div>
+</section>
+
+<script type="text/babel" src="../PrimitiveButton.jsx"></script>
+<script type="text/babel" src="../ServiceGrid.jsx"></script>
+<script type="text/babel" src="../QuoteForm.jsx"></script>
+<script type="text/babel">
+ReactDOM.createRoot(document.getElementById('form-root')).render(<QuoteForm/>);
+</script>
+</body>
+</html>

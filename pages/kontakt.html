@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontakt — Silke Total Service</title>
+<meta name="description" content="Få et tilbud fra Silke Total Service. Skriv kort hvad du har brug for, så vender vi tilbage med en fast pris.">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="sth sth-static" id="site-header">
+  <div class="sth-inner">
+    <a class="sth-logo" href="../index.html">
+      <span class="sth-logo-mark" id="logo-mark">
+        <svg viewBox="0 0 100 100" width="36" height="36" aria-hidden="true">
+          <path id="logo-path" fill="rgb(82,158,209)"/>
+          <ellipse id="logo-highlight" cx="38" cy="38" rx="6" ry="10" fill="#ffffff" transform="rotate(-20 38 38)"/>
+          <path id="vein-mid" stroke="#1f3a2c" stroke-width="1.6" stroke-linecap="round" fill="none" d="M50,14 L50,86" opacity="0"/>
+          <path id="vein-r1" stroke="#1f3a2c" stroke-width="1" stroke-linecap="round" fill="none" d="M50,38 Q60,42 66,50" opacity="0"/>
+          <path id="vein-r2" stroke="#1f3a2c" stroke-width="1" stroke-linecap="round" fill="none" d="M50,58 Q60,62 66,68" opacity="0"/>
+          <path id="vein-l1" stroke="#1f3a2c" stroke-width="1" stroke-linecap="round" fill="none" d="M50,38 Q40,42 34,50" opacity="0"/>
+          <path id="vein-l2" stroke="#1f3a2c" stroke-width="1" stroke-linecap="round" fill="none" d="M50,58 Q40,62 34,68" opacity="0"/>
+        </svg>
+      </span>
+      <span class="sth-logo-word">
+        <span class="sth-logo-line1">Silke</span>
+        <span class="sth-logo-line2">Total Service</span>
+      </span>
+    </a>
+    <nav class="sth-nav">
+      <a href="../index.html#ydelser">Ydelser</a>
+      <a href="om-os.html">Om os</a>
+      <a href="omraade.html">Område</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+    <div class="sth-right">
+      <a class="sth-phone" href="https://www.facebook.com/profile.php?id=61574788933190" target="_blank" rel="noopener">facebook · silkehave</a>
+    </div>
+    <button class="sth-burger" aria-label="Menu" id="burger">
+      <img src="../assets/icon-menu.svg" alt="">
+    </button>
+  </div>
+  <div class="sth-mobile" id="mobile-menu">
+    <a href="../index.html#ydelser">Ydelser</a>
+    <a href="om-os.html">Om os</a>
+    <a href="omraade.html">Område</a>
+    <a href="kontakt.html">Kontakt</a>
+  </div>
+</header>
+
+<!-- Page head -->
+<section class="page-head">
+  <div class="page-head-inner">
+    <div class="stb-eyebrow">Kontakt</div>
+    <h1>Få et tilbud.</h1>
+    <p>Skriv kort hvad du har brug for. Vi vender tilbage indenfor 1–2 hverdage med en fast pris — uden bindinger.</p>
+  </div>
+</section>
+
+<!-- Form + info -->
+<section style="background: var(--cream)">
+  <div class="kontakt-grid">
+    <div class="kontakt-info">
+      <h2>Eller fang os direkte</h2>
+      <p>Hvis det er nemmere — skriv på Facebook. Vi svarer typisk samme dag.</p>
+      <a class="kontakt-line" href="https://www.facebook.com/profile.php?id=61574788933190" target="_blank" rel="noopener">
+        <img src="../assets/icon-mail.svg" alt=""> Facebook · silkehave
+      </a>
+      <a class="kontakt-line" href="omraade.html">
+        <img src="../assets/icon-mappin.svg" alt=""> Midtjylland · se område
+      </a>
+      <span class="kontakt-line">
+        <img src="../assets/icon-phone.svg" alt=""> -- -- -- --
+      </span>
+
+      <h2 style="margin-top: 40px">Hvad sker der nu?</h2>
+      <p style="margin-bottom: 8px"><strong>1.</strong> Vi læser hvad du har skrevet.</p>
+      <p style="margin-bottom: 8px"><strong>2.</strong> Vi ringer eller skriver tilbage med spørgsmål — eller en fast pris.</p>
+      <p><strong>3.</strong> Når vi er enige, sætter vi en dag i kalenderen.</p>
+    </div>
+
+    <div>
+      <form class="stqf" id="quote-form" novalidate>
+        <h3>Beskriv din opgave</h3>
+        <p>Det tager 1 minut. Du forpligter dig ikke til noget.</p>
+
+        <label>Hvad har du brug for? <span>(vælg én eller flere)</span></label>
+        <div class="stqf-services">
+          <span class="stqf-pill" data-value="Hækklipning"><img src="../assets/icon-haekklipning.svg" alt=""> Hækklipning</span>
+          <span class="stqf-pill" data-value="Græsslåning"><img src="../assets/icon-graesslaaning.svg" alt=""> Græsslåning</span>
+          <span class="stqf-pill" data-value="Fliserens"><img src="../assets/icon-fliserens.svg" alt=""> Fliserens</span>
+          <span class="stqf-pill" data-value="Vinduesrens"><img src="../assets/icon-vinduesrens.svg" alt=""> Vinduesrens</span>
+          <span class="stqf-pill" data-value="Snerydning"><img src="../assets/icon-snerydning.svg" alt=""> Snerydning</span>
+          <span class="stqf-pill" data-value="Haveordning"><img src="../assets/icon-haveordning.svg" alt=""> Haveordning</span>
+        </div>
+        <input type="hidden" name="services" value="">
+
+        <div class="stqf-row">
+          <label>Navn
+            <input type="text" name="name" required>
+          </label>
+          <label>Telefon <span>(valgfrit)</span>
+            <input type="tel" name="phone">
+          </label>
+        </div>
+
+        <label>E-mail
+          <input type="email" name="email" required>
+        </label>
+
+        <label>Adresse / by
+          <input type="text" name="address" placeholder="F.eks. Silkeborg" required>
+        </label>
+
+        <label>Kort om opgaven
+          <textarea name="message" placeholder="F.eks.: 30 m bøgehæk, ca. 2 m høj, ligger ud mod villavej." required></textarea>
+        </label>
+
+        <p class="stqf-help">Vi bruger kun dine oplysninger til at vende tilbage med et tilbud.</p>
+
+        <div class="stqf-actions">
+          <button class="stb stb-primary" type="submit">Send forespørgsel
+            <span class="stb-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </button>
+        </div>
+      </form>
+
+      <div class="stqf stqf-done" id="quote-done" style="display:none">
+        <img src="../assets/icon-check.svg" alt="" style="width:48px;height:48px;margin:0 auto 16px;display:block">
+        <h3>Tak — vi har modtaget din forespørgsel.</h3>
+        <p>Vi vender tilbage indenfor 1–2 hverdage. Hvis det haster, så ring direkte.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="stft">
+  <div class="stft-inner">
+    <div class="stft-brand">
+      <img src="../assets/logo-mark.svg" alt="Silke" width="48" height="48">
+      <p>Have‑ og ejendomsservice<br>i Midtjylland.</p>
+    </div>
+    <div class="stft-col">
+      <h4>Ydelser</h4>
+      <a href="service.html">Hækklipning</a>
+      <a href="service.html">Græsslåning</a>
+      <a href="service.html">Fliserens</a>
+      <a href="service.html">Vinduesrens</a>
+      <a href="service.html">Snerydning</a>
+      <a href="service.html">Haveordning</a>
+    </div>
+    <div class="stft-col">
+      <h4>Firma</h4>
+      <a href="om-os.html">Om os</a>
+      <a href="omraade.html">Område</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+    <div class="stft-col">
+      <h4>Kontakt</h4>
+      <span><img src="../assets/icon-phone.svg" alt=""> -- -- -- --</span>
+      <span><img src="../assets/icon-mail.svg" alt=""> --</span>
+      <a href="https://www.facebook.com/profile.php?id=61574788933190" target="_blank" rel="noopener">
+        <img src="../assets/icon-mail.svg" alt=""> Facebook · silkehave
+      </a>
+      <span class="stft-meta"><img src="../assets/icon-mappin.svg" alt=""> Midtjylland</span>
+    </div>
+  </div>
+  <div class="stft-base">
+    <span>© Silke Total Service</span>
+    <span>Have‑ og ejendomsservice</span>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

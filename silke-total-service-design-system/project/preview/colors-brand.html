@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Colors — Brand</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding: 20px; background: var(--cream); }
+  .row { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
+  .sw { aspect-ratio: 1; border-radius: 8px; display:flex; flex-direction:column; justify-content: flex-end; padding: 8px; border: 1px solid var(--stone-25); position: relative; }
+  .sw .name { font-family: var(--font-sans); font-size: 11px; font-weight: 600; }
+  .sw .hex  { font-family: var(--font-mono); font-size: 10px; opacity: 0.75; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw" style="background: var(--forest); color: var(--cream);">    <div class="name">Forest</div>    <div class="hex">#1F3A2C</div></div>
+    <div class="sw" style="background: var(--hedge); color: var(--cream);">     <div class="name">Hedge</div>     <div class="hex">#3B6B45</div></div>
+    <div class="sw" style="background: var(--spring); color: var(--forest);">   <div class="name">Spring</div>    <div class="hex">#7FA66B</div></div>
+    <div class="sw" style="background: var(--sky); color: var(--forest);">      <div class="name">Sky</div>       <div class="hex">#A8C8DD</div></div>
+    <div class="sw" style="background: var(--cream); color: var(--bark);">      <div class="name">Cream</div>     <div class="hex">#F5F1E8</div></div>
+    <div class="sw" style="background: var(--bone); color: var(--bark);">       <div class="name">Bone</div>      <div class="hex">#FFFDF7</div></div>
+    <div class="sw" style="background: var(--stone); color: var(--cream);">     <div class="name">Stone</div>     <div class="hex">#8A8578</div></div>
+    <div class="sw" style="background: var(--bark); color: var(--cream);">      <div class="name">Bark</div>      <div class="hex">#3A2E22</div></div>
+  </div>
+</body></html>
