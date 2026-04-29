@@ -1,0 +1,80 @@
+# Netlify configuration for Silke Total Service
+# Plain static site — no build step required.
+
+[build]
+  publish = "."
+
+# ── HTML pages: short cache so updates reach visitors quickly ──────────────
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/pages/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ── Static assets: long cache (filenames are stable / manually versioned) ──
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/styles.css"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/script.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ── Security headers applied to every response ─────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options            = "DENY"
+    X-Content-Type-Options     = "nosniff"
+    Referrer-Policy            = "strict-origin-when-cross-origin"
+    Permissions-Policy         = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy    = """
+      default-src 'self';
+      script-src  'self' 'unsafe-inline';
+      style-src   'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src    'self' https://fonts.gstatic.com;
+      img-src     'self' data:;
+      media-src   'self';
+      connect-src 'self';
+      frame-ancestors 'none';
+    """
+
+# ── Pretty-URL redirects ───────────────────────────────────────────────────
+# Remove trailing slash (Netlify handles this automatically, but being explicit
+# avoids duplicate-content issues on sub-pages).
+[[redirects]]
+  from   = "/pages/service/"
+  to     = "/pages/service.html"
+  status = 301
+
+[[redirects]]
+  from   = "/pages/om-os/"
+  to     = "/pages/om-os.html"
+  status = 301
+
+[[redirects]]
+  from   = "/pages/omraade/"
+  to     = "/pages/omraade.html"
+  status = 301
+
+[[redirects]]
+  from   = "/pages/kontakt/"
+  to     = "/pages/kontakt.html"
+  status = 301
+
+# 404 fallback — serve the homepage for any unmatched route
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 404
