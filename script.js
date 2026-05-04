@@ -34,12 +34,22 @@
   // Pages with class "sth-static" stay in solid + leaf state regardless of scroll.
   const isStatic = header && header.classList.contains('sth-static');
 
-  function onScroll() {
+  let scrollRaf = null;
+  let lastMorphT = -1;
+  function updateHeaderFromScroll() {
+    scrollRaf = null;
     if (isStatic) return;
     const y = window.scrollY;
     header.classList.toggle('sth-solid', y > 80);
     const t = Math.max(0, Math.min(1, y / 520));
+    const roundedT = Math.round(t * 1000) / 1000;
+    if (roundedT === lastMorphT) return;
+    lastMorphT = roundedT;
     applyMorph(t);
+  }
+  function onScroll() {
+    if (scrollRaf !== null) return;
+    scrollRaf = requestAnimationFrame(updateHeaderFromScroll);
   }
   if (header) {
     if (isStatic) {
@@ -47,7 +57,7 @@
       applyMorph(1);
     } else {
       applyMorph(0);
-      onScroll();
+      updateHeaderFromScroll();
       window.addEventListener('scroll', onScroll, { passive: true });
     }
   }
@@ -56,7 +66,17 @@
   const burger = document.getElementById('burger');
   const mobileMenu = document.getElementById('mobile-menu');
   if (burger && mobileMenu) {
-    burger.addEventListener('click', () => mobileMenu.classList.toggle('is-open'));
+    burger.setAttribute('aria-controls', mobileMenu.id);
+    burger.setAttribute('aria-expanded', 'false');
+    function setMobileMenu(open) {
+      mobileMenu.classList.toggle('is-open', open);
+      burger.setAttribute('aria-expanded', String(open));
+    }
+    burger.addEventListener('click', () => setMobileMenu(!mobileMenu.classList.contains('is-open')));
+    mobileMenu.addEventListener('click', (e) => { if (e.target.closest('a')) setMobileMenu(false); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) { setMobileMenu(false); burger.focus(); }
+    });
   }
 
   // -------- Compare slider --------
@@ -66,8 +86,9 @@
     const handle = document.getElementById('compare-handle');
     const hint = document.getElementById('compare-hint');
 
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let pos = 50;
-    let auto = true;
+    let auto = !prefersReduced;
     let dragging = false;
 
     function setPos(v) {
@@ -78,20 +99,39 @@
     }
     setPos(50);
 
-    let raf;
-    const start = performance.now();
+    let raf = null;
+    let inViewport = false;
+    let elapsedBeforePause = 0;
+    let animationStartedAt = 0;
     function loop(now) {
-      if (!auto) return;
-      const elapsed = (now - start) / 1000;
+      if (!auto || !inViewport) { raf = null; return; }
+      const elapsed = (elapsedBeforePause + now - animationStartedAt) / 1000;
       setPos(50 + 42 * Math.sin((elapsed / 7) * Math.PI * 2));
       raf = requestAnimationFrame(loop);
     }
-    raf = requestAnimationFrame(loop);
+    function startAuto() {
+      if (!auto || !inViewport || raf !== null) return;
+      animationStartedAt = performance.now();
+      raf = requestAnimationFrame(loop);
+    }
+    function pauseAuto() {
+      if (raf === null) return;
+      elapsedBeforePause += performance.now() - animationStartedAt;
+      cancelAnimationFrame(raf); raf = null;
+    }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        inViewport = entries.some((e) => e.isIntersecting);
+        inViewport ? startAuto() : pauseAuto();
+      }).observe(wrap);
+    } else {
+      inViewport = true; startAuto();
+    }
 
     function stopAuto() {
       if (!auto) return;
       auto = false;
-      cancelAnimationFrame(raf);
+      pauseAuto();
       if (hint) {
         hint.style.opacity = '0';
         setTimeout(() => hint.remove(), 320);
@@ -448,6 +488,7 @@
       ro.observe(clipStage);
     };
     untrimmedImg.src = 'assets/photos/haek-ikke-klippet.png';
+    window.addEventListener('pagehide', () => { stopSnipping(); stopGrow(); });
   }
 
   // -------- Quote form (kontakt) --------
@@ -458,6 +499,7 @@
     pills.forEach((pill) => {
       pill.addEventListener('click', () => {
         pill.classList.toggle('is-on');
+        pill.setAttribute('aria-pressed', String(pill.classList.contains('is-on')));
         const selected = Array.from(pills)
           .filter((p) => p.classList.contains('is-on'))
           .map((p) => p.dataset.value);
