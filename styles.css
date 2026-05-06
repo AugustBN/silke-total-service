@@ -599,3 +599,28 @@ a:hover { color: var(--link-hover); text-decoration-thickness: 2px; }
   .stclip-stage { height: 320px; }
 }
 
+/* -------- Scroll reveal --------
+   JS adds .sr-reveal / .sr-stagger on init, then .sr-visible on intersect.
+   @media prefers-reduced-motion: JS skips adding classes entirely. */
+.sr-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.sr-reveal.sr-visible {
+  opacity: 1;
+  transform: none;
+}
+.sr-stagger > * {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.sr-stagger.sr-visible > * { opacity: 1; transform: none; }
+.sr-stagger.sr-visible > *:nth-child(1) { transition-delay:   0ms; }
+.sr-stagger.sr-visible > *:nth-child(2) { transition-delay:  90ms; }
+.sr-stagger.sr-visible > *:nth-child(3) { transition-delay: 180ms; }
+.sr-stagger.sr-visible > *:nth-child(4) { transition-delay: 270ms; }
+.sr-stagger.sr-visible > *:nth-child(5) { transition-delay: 360ms; }
+.sr-stagger.sr-visible > *:nth-child(6) { transition-delay: 450ms; }
+

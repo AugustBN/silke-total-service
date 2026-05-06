@@ -491,6 +491,43 @@
     window.addEventListener('pagehide', () => { stopSnipping(); stopGrow(); });
   }
 
+  // -------- Scroll reveal --------
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const REVEAL_SELECTORS = [
+      '.stsg-head',
+      '.stsg-card',
+      '.stba-inner',
+      '.stas-inner',
+      '.strv-head',
+      '.strv-card',
+      '.stcta-inner',
+      '.stft-inner',
+    ];
+    const STAGGER_SELECTORS = ['.stsg-grid', '.strv-list'];
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('sr-visible');
+        obs.unobserve(e.target);
+      });
+    }, { threshold: 0.12, rootMargin: '-40px 0px' });
+
+    REVEAL_SELECTORS.forEach((sel) => {
+      document.querySelectorAll(sel).forEach((el) => {
+        el.classList.add('sr-reveal');
+        obs.observe(el);
+      });
+    });
+
+    STAGGER_SELECTORS.forEach((sel) => {
+      document.querySelectorAll(sel).forEach((grid) => {
+        grid.classList.add('sr-stagger');
+        obs.observe(grid);
+      });
+    });
+  }
+
   // -------- Quote form (kontakt) --------
   const form = document.getElementById('quote-form');
   if (form) {
