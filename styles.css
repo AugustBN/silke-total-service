@@ -201,7 +201,7 @@ a:hover { color: var(--link-hover); text-decoration-thickness: 2px; }
 .sth-logo-mark { display: inline-flex; width: 36px; height: 36px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25)); flex: none; }
 .sth-logo-word { display: inline-flex; flex-direction: column; line-height: 1.05; color: var(--cream); }
 .sth-logo-line1 { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
-.sth-logo-line2 { font-family: var(--font-sans); font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.85; margin-top: 2px; }
+.sth-logo-line2 { font-family: var(--font-sans); font-size: 12px; font-weight: 500; letter-spacing: 0.04em; opacity: 0.85; margin-top: 1px; }
 .sth-solid .sth-logo-word { color: var(--forest); }
 .sth-nav { display: flex; gap: 28px; margin-left: auto; }
 .sth-nav a { font-family: var(--font-sans); font-size: 15px; font-weight: 500; color: var(--cream); text-decoration: none; }
