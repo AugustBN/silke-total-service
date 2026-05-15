@@ -543,11 +543,60 @@
         if (hiddenServices) hiddenServices.value = selected.join(', ');
       });
     });
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      form.style.display = 'none';
-      const done = document.getElementById('quote-done');
-      if (done) done.style.display = 'block';
+
+      const services = hiddenServices ? hiddenServices.value : '';
+      if (!services.trim()) {
+        let errEl = form.querySelector('.stqf-pill-error');
+        if (!errEl) {
+          errEl = document.createElement('p');
+          errEl.className = 'stqf-pill-error';
+          form.querySelector('.stqf-services').after(errEl);
+        }
+        errEl.textContent = 'Vælg mindst én ydelse.';
+        errEl.style.cssText = 'color:#a34a2a;font-size:.85rem;margin:.25rem 0 .5rem';
+        return;
+      }
+      const pillErr = form.querySelector('.stqf-pill-error');
+      if (pillErr) pillErr.textContent = '';
+
+      const data = {
+        name:     form.querySelector('[name="name"]').value.trim(),
+        phone:    form.querySelector('[name="phone"]').value.trim(),
+        email:    form.querySelector('[name="email"]').value.trim(),
+        address:  form.querySelector('[name="address"]').value.trim(),
+        services,
+        message:  form.querySelector('[name="message"]').value.trim(),
+      };
+
+      const btn = form.querySelector('[type="submit"]');
+      const origText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Sender…';
+
+      try {
+        const res = await fetch('/.netlify/functions/quote', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) throw new Error('server');
+        form.style.display = 'none';
+        const done = document.getElementById('quote-done');
+        if (done) done.style.display = 'block';
+      } catch {
+        btn.disabled = false;
+        btn.textContent = origText;
+        let errEl = form.querySelector('.stqf-submit-error');
+        if (!errEl) {
+          errEl = document.createElement('p');
+          errEl.className = 'stqf-submit-error';
+          errEl.style.cssText = 'color:#a34a2a;font-size:.85rem;margin:.5rem 0 0';
+          form.querySelector('.stqf-actions').after(errEl);
+        }
+        errEl.textContent = 'Noget gik galt — prøv igen eller skriv til os på Facebook.';
+      }
     });
   }
 })();
