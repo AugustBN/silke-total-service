@@ -12,7 +12,7 @@ exports.handler = async function (event) {
     return { statusCode: 400, headers: JSON_HEADERS, body: JSON.stringify({ error: 'Ugyldig JSON' }) };
   }
 
-  const { name, phone, email, address, services, message } = body;
+  const { name, phone, email, address, services, message, images } = body;
 
   if (!name || !email || !address || !message) {
     return { statusCode: 400, headers: JSON_HEADERS, body: JSON.stringify({ error: 'Mangler påkrævede felter' }) };
@@ -32,8 +32,10 @@ exports.handler = async function (event) {
     hour: '2-digit', minute: '2-digit',
   });
 
+  const hasImages = Array.isArray(images) && images.length > 0;
+
   const lines = [
-    '🌿 *Ny forespørgsel — Silke Total Service*',
+    '\u{1F33F} *Ny forespørgsel — Silke Total Service*',
     '',
     `*Navn:* ${name}`,
     phone ? `*Telefon:* ${phone}` : '*Telefon:* —',
@@ -43,11 +45,12 @@ exports.handler = async function (event) {
     `*Ydelser:* ${services || '—'}`,
     '',
     `*Besked:*\n${message}`,
+    hasImages ? `\n_${images.length} billede${images.length > 1 ? 'r' : ''} vedhæftet_` : '',
     '',
     `_Sendt: ${now}_`,
-  ];
+  ].filter((l) => l !== undefined);
 
-  const resp = await fetch(
+  const msgResp = await fetch(
     `https://api.telegram.org/bot${token}/sendMessage`,
     {
       method: 'POST',
@@ -60,10 +63,27 @@ exports.handler = async function (event) {
     }
   );
 
-  if (!resp.ok) {
-    const err = await resp.text();
-    console.error('Telegram API fejl:', err);
+  if (!msgResp.ok) {
+    const err = await msgResp.text();
+    console.error('Telegram sendMessage fejl:', err);
     return { statusCode: 502, headers: JSON_HEADERS, body: JSON.stringify({ error: 'Telegram fejl' }) };
+  }
+
+  if (hasImages) {
+    for (const b64 of images.slice(0, 3)) {
+      try {
+        const buffer = Buffer.from(b64, 'base64');
+        const fd = new FormData();
+        fd.append('chat_id', String(chatId));
+        fd.append('photo', new Blob([buffer], { type: 'image/jpeg' }), 'foto.jpg');
+        await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
+          method: 'POST',
+          body: fd,
+        });
+      } catch (err) {
+        console.error('Telegram sendPhoto fejl:', err);
+      }
+    }
   }
 
   return {

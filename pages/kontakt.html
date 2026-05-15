@@ -102,7 +102,18 @@
             <input type="text" name="name" required>
           </label>
           <label>Telefon <span>(valgfrit)</span>
-            <input type="tel" name="phone">
+            <div class="stqf-phone-wrap">
+              <select name="phone_country" class="stqf-country">
+                <option value="+45" selected>DK +45</option>
+                <option value="+46">SE +46</option>
+                <option value="+47">NO +47</option>
+                <option value="+49">DE +49</option>
+                <option value="+44">GB +44</option>
+                <option value="+31">NL +31</option>
+                <option value="+48">PL +48</option>
+              </select>
+              <input type="tel" name="phone" placeholder="12 34 56 78">
+            </div>
           </label>
         </div>
 
@@ -112,6 +123,15 @@
 
         <label>Adresse / by
           <input type="text" name="address" placeholder="F.eks. Silkeborg" required>
+        </label>
+
+        <label>Billeder <span>(valgfrit — hjælper os at vurdere opgaven)</span>
+          <div class="stqf-file-wrap">
+            <input type="file" name="images" id="quote-images" accept="image/*" multiple class="stqf-file-input">
+            <label for="quote-images" class="stqf-file-btn">Vælg billeder</label>
+            <span class="stqf-file-hint" id="file-hint">Ingen valgt</span>
+          </div>
+          <div class="stqf-previews" id="file-previews"></div>
         </label>
 
         <label>Kort om opgaven

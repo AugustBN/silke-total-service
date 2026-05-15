@@ -543,37 +543,144 @@
         if (hiddenServices) hiddenServices.value = selected.join(', ');
       });
     });
+
+    // ---- Image upload preview ----
+    const fileInput = document.getElementById('quote-images');
+    const fileHint = document.getElementById('file-hint');
+    const previews = document.getElementById('file-previews');
+    let selectedFiles = [];
+
+    function readAsBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function renderPreviews() {
+      if (!previews) return;
+      previews.innerHTML = '';
+      selectedFiles.forEach((file, i) => {
+        const url = URL.createObjectURL(file);
+        const wrap = document.createElement('div');
+        wrap.className = 'stqf-preview';
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = file.name;
+        const rm = document.createElement('button');
+        rm.className = 'stqf-preview-rm';
+        rm.type = 'button';
+        rm.textContent = 'x';
+        rm.setAttribute('aria-label', 'Fjern billede');
+        rm.addEventListener('click', () => {
+          URL.revokeObjectURL(url);
+          selectedFiles.splice(i, 1);
+          renderPreviews();
+          updateHint();
+        });
+        wrap.append(img, rm);
+        previews.appendChild(wrap);
+      });
+    }
+
+    function updateHint() {
+      if (!fileHint) return;
+      fileHint.textContent = selectedFiles.length === 0
+        ? 'Ingen valgt'
+        : `${selectedFiles.length} billede${selectedFiles.length > 1 ? 'r' : ''} valgt`;
+    }
+
+    if (fileInput) {
+      fileInput.addEventListener('change', () => {
+        const MAX = 3;
+        const newFiles = Array.from(fileInput.files).slice(0, MAX - selectedFiles.length);
+        selectedFiles = [...selectedFiles, ...newFiles].slice(0, MAX);
+        fileInput.value = '';
+        renderPreviews();
+        updateHint();
+      });
+    }
+    function showFieldError(selector, msg) {
+      let el = form.querySelector(selector);
+      if (!el) {
+        el = document.createElement('p');
+        el.className = selector.replace('.', '');
+        el.style.cssText = 'color:#a34a2a;font-size:.85rem;margin:.25rem 0 .5rem';
+        const ref = selector === '.stqf-pill-error'
+          ? form.querySelector('.stqf-services')
+          : selector === '.stqf-email-error'
+            ? form.querySelector('[name="email"]').closest('label')
+            : selector === '.stqf-msg-error'
+              ? form.querySelector('[name="message"]').closest('label')
+              : form.querySelector('.stqf-actions');
+        if (ref) ref.after(el);
+      }
+      el.textContent = msg;
+      return el;
+    }
+    function clearFieldError(selector) {
+      const el = form.querySelector(selector);
+      if (el) el.textContent = '';
+    }
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      let valid = true;
 
       const services = hiddenServices ? hiddenServices.value : '';
       if (!services.trim()) {
-        let errEl = form.querySelector('.stqf-pill-error');
-        if (!errEl) {
-          errEl = document.createElement('p');
-          errEl.className = 'stqf-pill-error';
-          form.querySelector('.stqf-services').after(errEl);
-        }
-        errEl.textContent = 'Vælg mindst én ydelse.';
-        errEl.style.cssText = 'color:#a34a2a;font-size:.85rem;margin:.25rem 0 .5rem';
-        return;
+        showFieldError('.stqf-pill-error', 'Vælg mindst én ydelse.');
+        valid = false;
+      } else {
+        clearFieldError('.stqf-pill-error');
       }
-      const pillErr = form.querySelector('.stqf-pill-error');
-      if (pillErr) pillErr.textContent = '';
 
-      const data = {
-        name:     form.querySelector('[name="name"]').value.trim(),
-        phone:    form.querySelector('[name="phone"]').value.trim(),
-        email:    form.querySelector('[name="email"]').value.trim(),
-        address:  form.querySelector('[name="address"]').value.trim(),
-        services,
-        message:  form.querySelector('[name="message"]').value.trim(),
-      };
+      const emailVal = form.querySelector('[name="email"]').value.trim();
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+      if (!emailOk) {
+        showFieldError('.stqf-email-error', 'Skriv en gyldig e-mailadresse.');
+        valid = false;
+      } else {
+        clearFieldError('.stqf-email-error');
+      }
+
+      const msgVal = form.querySelector('[name="message"]').value.trim();
+      if (msgVal.length < 10) {
+        showFieldError('.stqf-msg-error', 'Beskriv opgaven lidt mere — mindst 10 tegn.');
+        valid = false;
+      } else {
+        clearFieldError('.stqf-msg-error');
+      }
+
+      if (!valid) return;
+
+      const phoneCountry = (form.querySelector('[name="phone_country"]') || {}).value || '+45';
+      const phoneNum = form.querySelector('[name="phone"]').value.trim();
+      const phone = phoneNum ? `${phoneCountry} ${phoneNum}` : '';
 
       const btn = form.querySelector('[type="submit"]');
       const origText = btn.textContent;
       btn.disabled = true;
       btn.textContent = 'Sender…';
+
+      let images = [];
+      try {
+        images = await Promise.all(selectedFiles.map(readAsBase64));
+      } catch {
+        // ignore — send without images
+      }
+
+      const data = {
+        name:     form.querySelector('[name="name"]').value.trim(),
+        phone,
+        email:    emailVal,
+        address:  form.querySelector('[name="address"]').value.trim(),
+        services,
+        message:  msgVal,
+        images,
+      };
 
       try {
         const res = await fetch('/.netlify/functions/quote', {
@@ -588,14 +695,7 @@
       } catch {
         btn.disabled = false;
         btn.textContent = origText;
-        let errEl = form.querySelector('.stqf-submit-error');
-        if (!errEl) {
-          errEl = document.createElement('p');
-          errEl.className = 'stqf-submit-error';
-          errEl.style.cssText = 'color:#a34a2a;font-size:.85rem;margin:.5rem 0 0';
-          form.querySelector('.stqf-actions').after(errEl);
-        }
-        errEl.textContent = 'Noget gik galt — prøv igen eller skriv til os på Facebook.';
+        showFieldError('.stqf-submit-error', 'Noget gik galt — prøv igen eller skriv til os på Facebook.');
       }
     });
   }

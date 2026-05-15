@@ -478,6 +478,19 @@ a:hover { color: var(--link-hover); text-decoration-thickness: 2px; }
 .stqf-pill:hover { border-color: var(--hedge); }
 .stqf-pill.is-on { background: var(--hedge); color: #fff; border-color: var(--hedge); }
 .stqf-pill.is-on img { filter: brightness(0) invert(1); }
+.stqf-phone-wrap { display: flex; gap: 8px; margin-top: 6px; }
+.stqf-phone-wrap input { margin-top: 0; flex: 1; min-width: 0; }
+.stqf-country { flex-shrink: 0; width: 88px; padding: 12px 8px; background: var(--cream); border: 1px solid var(--stone-25); border-radius: var(--radius-sm); font-family: var(--font-sans); font-size: 14px; color: var(--bark); cursor: pointer; }
+.stqf-country:focus { outline: 2px solid var(--hedge); outline-offset: 1px; border-color: var(--hedge); }
+.stqf-file-wrap { display: flex; align-items: center; gap: 10px; margin-top: 6px; flex-wrap: wrap; }
+.stqf-file-input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.stqf-file-btn { display: inline-flex; align-items: center; padding: 10px 16px; background: var(--cream); border: 1.5px solid var(--stone-25); border-radius: var(--radius-sm); font-size: 14px; color: var(--bark); cursor: pointer; white-space: nowrap; font-weight: 500; }
+.stqf-file-btn:hover { border-color: var(--hedge); }
+.stqf-file-hint { font-size: 13px; color: var(--stone); }
+.stqf-previews { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.stqf-preview { position: relative; }
+.stqf-preview img { width: 72px; height: 72px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--stone-25); display: block; }
+.stqf-preview-rm { position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; background: var(--bark); color: #fff; border: none; border-radius: 50%; font-size: 11px; line-height: 18px; text-align: center; cursor: pointer; padding: 0; }
 .stqf-actions { display: flex; justify-content: flex-end; margin-top: 16px; }
 .stqf-help { font-size: 13px; color: var(--stone); margin: 0 0 16px; }
 .stqf-done { text-align: center; padding: 24px 16px; }
