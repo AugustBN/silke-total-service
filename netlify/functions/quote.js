@@ -35,7 +35,7 @@ exports.handler = async function (event) {
   const hasImages = Array.isArray(images) && images.length > 0;
 
   const lines = [
-    '\u{1F33F} *Ny forespørgsel — Silke Total Service*',
+    '\u{1F33F} *Ny forespørgsel — Silkehave*',
     '',
     `*Navn:* ${name}`,
     phone ? `*Telefon:* ${phone}` : '*Telefon:* —',
