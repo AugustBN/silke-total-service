@@ -659,7 +659,7 @@
 
       const services = hiddenServices ? hiddenServices.value : '';
       if (!services.trim()) {
-        showFieldError('.stqf-pill-error', 'Vælg mindst én ydelse.');
+        showFieldError('.stqf-pill-error', 'Vælg mindst én ydelse — tryk på en af knapperne ovenfor.');
         valid = false;
       } else {
         clearFieldError('.stqf-pill-error');
@@ -667,16 +667,22 @@
 
       const emailVal = form.querySelector('[name="email"]').value.trim();
       const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
-      if (!emailOk) {
-        showFieldError('.stqf-email-error', 'Skriv en gyldig e-mailadresse.');
+      if (!emailVal) {
+        showFieldError('.stqf-email-error', 'Skriv din e-mailadresse, f.eks. navn@gmail.com');
+        valid = false;
+      } else if (!emailOk) {
+        showFieldError('.stqf-email-error', 'E-mailadressen ser ikke rigtig ud — tjek at den har @ og et domæne (f.eks. .dk eller .com)');
         valid = false;
       } else {
         clearFieldError('.stqf-email-error');
       }
 
       const msgVal = form.querySelector('[name="message"]').value.trim();
-      if (msgVal.length < 10) {
-        showFieldError('.stqf-msg-error', 'Beskriv opgaven lidt mere — mindst 10 tegn.');
+      if (!msgVal) {
+        showFieldError('.stqf-msg-error', 'Skriv lidt om opgaven — hvad skal der laves, og hvor?');
+        valid = false;
+      } else if (msgVal.length < 10) {
+        showFieldError('.stqf-msg-error', 'Skriv lidt mere — vi skal vide nok til at give dig en pris.');
         valid = false;
       } else {
         clearFieldError('.stqf-msg-error');
@@ -723,7 +729,7 @@
       } catch {
         btn.disabled = false;
         btn.textContent = origText;
-        showFieldError('.stqf-submit-error', 'Noget gik galt — prøv igen eller skriv til os på Facebook.');
+        showFieldError('.stqf-submit-error', 'Noget gik galt og beskeden blev ikke sendt. Prøv igen, eller ring til os på 91 25 10 21.');
       }
     });
   }
