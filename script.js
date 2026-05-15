@@ -592,12 +592,40 @@
         : `${selectedFiles.length} billede${selectedFiles.length > 1 ? 'r' : ''} valgt`;
     }
 
+    const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif'];
+    const MAX_FILES = 3;
+    const MAX_TOTAL_BYTES = 4 * 1024 * 1024; // 4 MB samlet
+
     if (fileInput) {
       fileInput.addEventListener('change', () => {
-        const MAX = 3;
-        const newFiles = Array.from(fileInput.files).slice(0, MAX - selectedFiles.length);
-        selectedFiles = [...selectedFiles, ...newFiles].slice(0, MAX);
+        const incoming = Array.from(fileInput.files);
         fileInput.value = '';
+
+        const typeFiltered = incoming.filter(f => ALLOWED_TYPES.includes(f.type));
+        const typeRejected = incoming.length - typeFiltered.length;
+
+        const combined = [...selectedFiles, ...typeFiltered].slice(0, MAX_FILES);
+        const totalSize = combined.reduce((s, f) => s + f.size, 0);
+
+        let warn = '';
+        if (typeRejected > 0) warn += `${typeRejected} fil(er) sprunget over — kun JPG, PNG, WebP og HEIC tilladt. `;
+        if (totalSize > MAX_TOTAL_BYTES) {
+          warn += 'Billederne er for store samlet (maks 4 MB). Vælg mindre billeder.';
+          selectedFiles = selectedFiles; // behold kun det der allerede var valgt
+        } else {
+          selectedFiles = combined;
+        }
+
+        const warnEl = fileInput.closest('label') && fileInput.closest('label').querySelector('.stqf-file-warn')
+          || (() => {
+            const el = document.createElement('p');
+            el.className = 'stqf-file-warn';
+            el.style.cssText = 'color:#a34a2a;font-size:.85rem;margin:.25rem 0 0';
+            fileInput.closest('label').appendChild(el);
+            return el;
+          })();
+        warnEl.textContent = warn;
+
         renderPreviews();
         updateHint();
       });
