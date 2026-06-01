@@ -487,7 +487,7 @@
       const ro = new ResizeObserver(resize);
       ro.observe(clipStage);
     };
-    untrimmedImg.src = 'assets/photos/haek-ikke-klippet.png';
+    untrimmedImg.src = 'assets/photos/haek-ikke-klippet.jpg';
     window.addEventListener('pagehide', () => { stopSnipping(); stopGrow(); });
   }
 
